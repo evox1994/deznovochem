@@ -129,6 +129,7 @@ a{
     transition: all 0.3s;
 }
 button {
+    font-family: 'SourceSansPro', sans-serif;
 	-webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     -ms-transition: all 0.3s;
@@ -163,16 +164,23 @@ input.error,textarea.error{
 	margin: 0px auto;
 }
 input::-webkit-input-placeholder {
-	color: #a0a0a0;
+	color: #a1a1c2;
 }
 input:-moz-placeholder {
-    color: #a0a0a0;
+    color: #a1a1c2;
 }
 textarea::-webkit-input-placeholder {
-    color: #a0a0a0;
+    color: #a1a1c2;
 }
 textarea:-moz-placeholder {
-    color: #a0a0a0;
+    color: #a1a1c2;
+}
+input[type="number"] {
+    -moz-appearance:textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
 .mobile-btn {
 	display: none;
@@ -296,34 +304,33 @@ textarea:-moz-placeholder {
 .policy-text {
     display: inline-block;
     max-width: 100%;
-    font-size: 12px;
-    color: #2d2d2d;
+    font-size: 14px;
     line-height: 1.2;
     position: relative;
     text-align: left;
-    padding-left: 35px;
+    padding-left: 25px;
     margin-top: 15px;
 }
+.b-form-wrap .policy-text {
+    color: #222222;
+}
 .policy-text a {
-    color: #2d2d2d;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    transition: all 0.3s;
+    color: #6a3df7;
+    border-bottom: 1px solid transparent;
 }
 .policy-text a:hover {
-    color: #ffca48;
+    border-color: #6a3df7;
 }
 .policy-text .radio-btn {
     display: block;
     position: absolute;
-    width: 25px;
-    height: 25px;
-    border: 1px solid #f2f3f6;
-    background-color: #f2f3f6;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #f0f0f9;
+    background-color: #f0f0f9;
     border-radius: 5px;
     left: 0;
-    top: calc(50% - 12.5px);
+    top: calc(50% - 10px);
 }
 .policy-text .radio-btn.error {
     border-color: #ff0000;
@@ -334,12 +341,13 @@ textarea:-moz-placeholder {
 .policy-text .radio-btn.active::before {
     content: '';
     display: block;
-    width: 10px;
+    width: 8px;
     height: 2px;
     position: absolute;
     left: 1px;
-    top: 13px;
-    background-color: #0c112c;
+    top: 10px;
+    background-color: #6a3df7;
+    border-radius: 2px;
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -348,12 +356,13 @@ textarea:-moz-placeholder {
 .policy-text .radio-btn.active::after {
     content: '';
     display: block;
-    width: 15px;
+    width: 13px;
     height: 2px;
     position: absolute;
-    left: 7px;
-    top: 11px;
-    background-color: #0c112c;
+    left: 5px;
+    top: 8px;
+    background-color: #6a3df7;
+    border-radius: 2px;
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
     -ms-transform: rotate(-45deg);

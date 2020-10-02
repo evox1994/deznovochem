@@ -24,7 +24,7 @@ $(document).ready(function(){
 
 	$('.fancybox-gal').fancybox({loop: true});
 	$('.fancybox').fancybox({touch: false});
-	$('input[type="tel"]').inputmask('+7 (999) 999-99-99');
+	$('input[type="tel"]').inputmask('+7 999 999 99 99');
 
 	$(document).on('click','.close-btn',function(){
 		$('.mobile-btn').removeClass('active');
@@ -90,6 +90,10 @@ $(document).ready(function(){
 			});
 		}
 
+		if ($(this).hasClass('calc-form')){
+			valid = false;
+		}
+
 		if (!valid) {
 			event.preventDefault();
 			return false;
@@ -120,6 +124,40 @@ $(document).ready(function(){
 		]
 	});
 
+	$('.b-clients-slider').slick({
+		arrows: false,
+		dots: true,
+		slidesToShow: 4,
+		slidesToScroll: 4,
+		responsive: [
+			{
+				breakpoint: 1024,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 3
+				}
+			},
+			{
+				breakpoint: 560,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2
+				}
+			},
+			{
+				breakpoint: 340,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1
+				}
+			}
+		]
+	});
+
+	$('.b-select select').chosen({
+		disable_search: true
+	});
+
 	$(document).on('click','.nav-list li.li-drop span',function(){
 		$(this).parent('li.li-drop').addClass('active');
 	});
@@ -132,6 +170,34 @@ $(document).ready(function(){
 		if ( !$(this).hasClass('active') ){
 			$(this).parents('.swap-list').find('li').removeClass('active');
 			$(this).addClass('active');
+		}
+	});
+
+	/*$('.b-selection .step').find('.b-select select').on('change',function(){
+		if ( $(this).parents('.step').next('.step').length ){
+			$(this).parents('.step').next('.step').addClass('active');
+		}
+	});*/
+
+	$('.calc-form input').on('change',function(){
+		var s = $(this).val();
+		var v = $('.calc-form select').val();
+
+		if (s){
+			$('.b-consumption').find('.text').html('Количество антисептика&nbsp;(л.): <span>'+s*v+'</span>');
+		} else {
+			$('.b-consumption').find('.text').html('Заполните поля выше для рассчёта расхода');
+		}
+	});
+
+	$('.calc-form select').on('change',function(){
+		var s = $('.calc-form input').val();
+		var v = $(this).val();
+
+		if (s){
+			$('.b-consumption').find('.text').html('Количество антисептика&nbsp;(л.): <span>'+s*v+'</span>');
+		} else {
+			$('.b-consumption').find('.text').html('Заполните поля выше для рассчёта расхода');
 		}
 	});
 
