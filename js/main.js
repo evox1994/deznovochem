@@ -182,9 +182,11 @@ $(document).ready(function(){
 	$('.calc-form input').on('change',function(){
 		var s = $(this).val();
 		var v = $('.calc-form select').val();
+		var res = +s*v;
+		res = +res.toFixed(6);
 
 		if (s){
-			$('.b-consumption').find('.text').html('Количество антисептика&nbsp;(л.): <span>'+s*v+'</span>');
+			$('.b-consumption').find('.text').html('Количество антисептика&nbsp;(л.): <span>'+res+'</span>');
 		} else {
 			$('.b-consumption').find('.text').html('Заполните поля выше для рассчёта расхода');
 		}
@@ -193,9 +195,11 @@ $(document).ready(function(){
 	$('.calc-form select').on('change',function(){
 		var s = $('.calc-form input').val();
 		var v = $(this).val();
+		var res = +s*v;
+		res = +res.toFixed(6);
 
 		if (s){
-			$('.b-consumption').find('.text').html('Количество антисептика&nbsp;(л.): <span>'+s*v+'</span>');
+			$('.b-consumption').find('.text').html('Количество антисептика&nbsp;(л.): <span>'+res+'</span>');
 		} else {
 			$('.b-consumption').find('.text').html('Заполните поля выше для рассчёта расхода');
 		}

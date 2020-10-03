@@ -43,7 +43,7 @@
 						<div class="city"><span>Томск</span></div>
 						<p>пр. Кирова, 27А, офис 1</p>
 					</div>
-					<a href="#" class="callback-btn">
+					<a href="#popup-callback" class="callback-btn fancybox">
 						<div class="icon"><img src="i/phone-icon.svg"></div>
 						<span>Заказать звонок</span>
 					</a>
@@ -367,6 +367,33 @@
 		</div>
 
 		<div style="display:none;">
+			<div class="popup" id="popup-callback">
+				<div class="b-title">Закажите обратный звонок</div>
+				<div class="subtitle">Перезвоним в ближайшее время</div>
+				<div class="b-form">
+					<form>
+						<label class="b-input">
+							<span>Ваше имя</span>
+							<input type="text" placeholder="Иван">
+						</label>
+						<label class="b-input">
+							<span>Ваш телефон</span>
+							<input type="tel" placeholder="+7 923 123 45 67">
+						</label>
+						<button type="submit" class="b-btn">Оформить заказ</button>
+						<div class="policy-text"><div class="radio-btn active"></div>Я принимаю условия <a href="#popup-policy" class="fancybox">политики обработки персональных данных</a></div>
+					</form>
+				</div>
+			</div>
+
+			<div class="popup popup-policy" id="popup-policy">
+				<div class="b-title">Соглашение на обработку персональных данных</div>
+				<div class="b-text">
+					<p>Данное соглашение создано нами с целью максимальной защищенности ваших данных. Пожалуйста, прочтите внимательно нашу политику конфиденциальности.<br> Когда вы отправляете заявку на нашем сайте с целью получения услуг, какой-либо справочной информации или обратной связи, вы автоматически даете согласие на обработку нами ваших персональных данных, а также иной информации: хранение, использование и сбор. Мы гарантируем, что ваши личные и персональные данные никогда не будут переданы третьим лицам.</p><br>
+					<p>Все указываемые персональные данные, такие как:<br> • адрес электронной почты,<br> • ваше имя,<br> • контактный номер телефона</p><br>
+					<p>Мы используем исключительно для связи с вами в следующих случаях: ответ на вопросы, обработка ваших заявок.</p>
+				</div>
+			</div>
 		</div>
 	</div>
 
