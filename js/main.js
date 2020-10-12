@@ -238,4 +238,43 @@ $(document).ready(function(){
 		}
 	});
 
+	$(document).on('click','.order-btn',function(){
+		var vol = $(this).parents('li').find('.swap-list li.active').attr('data-vol');
+		var price = $(this).parents('li').find('.swap-list li.active').attr('data-price');
+		var name = $(this).parents('li').find('.top .name').text();
+		$('#popup-cart').find('.product').find('.name').text(name);
+		$('#popup-cart').find('.product').find('.vol span').text(vol);
+		$('#popup-cart').find('.product').find('.price span').text(price);
+		$('#popup-cart').find('.product').find('.col .text').text(1);
+		$('#popup-cart').find('.sum span').text(price);
+	});
+
+	$(document).on('click','.popup .product .col .less',function(){
+		var col = Number($(this).parent('.col').find('.text').text());
+		var price = Number($(this).parents('.product').find('.price span').text());
+		var sum = Number($(this).parents('#popup-cart').find('.sum span').text());
+		if (col > 1){
+			col--;
+			sum = sum - price;
+			$(this).parents('#popup-cart').find('.sum span').text(sum);
+			$(this).parent('.col').find('.text').text(col);
+		} else {
+			$.fancybox.close();
+		}
+	});
+
+	$(document).on('click','.popup .product .col .more',function(){
+		var col = Number($(this).parent('.col').find('.text').text());
+		var price = Number($(this).parents('.product').find('.price span').text());
+		var sum = Number($(this).parents('#popup-cart').find('.sum span').text());
+		col++;
+		sum = sum + price;
+		$(this).parents('#popup-cart').find('.sum span').text(sum);
+		$(this).parent('.col').find('.text').text(col);
+	});
+
+	$(document).on('click','.popup .product .del',function(){
+		$.fancybox.close();
+	});
+
 });
