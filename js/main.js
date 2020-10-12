@@ -238,6 +238,8 @@ $(document).ready(function(){
 		}
 	});
 
+
+	/*Скрипты для попапа заказа*/
 	$(document).on('click','.order-btn',function(){
 		var vol = $(this).parents('li').find('.swap-list li.active').attr('data-vol');
 		var price = $(this).parents('li').find('.swap-list li.active').attr('data-price');
@@ -276,5 +278,6 @@ $(document).ready(function(){
 	$(document).on('click','.popup .product .del',function(){
 		$.fancybox.close();
 	});
+	/*Конец для попапа заказа*/
 
 });
