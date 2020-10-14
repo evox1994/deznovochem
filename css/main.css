@@ -298,6 +298,7 @@
 	color: #222222;
 	overflow: hidden;
 	text-align: left;
+	box-shadow: 0px 2px 18px 0px rgba(62, 45, 143, 0.25);
 }
 .b-drop.active {
 	display: block;
