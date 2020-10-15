@@ -24,6 +24,7 @@ $(document).ready(function(){
 
 	$('.fancybox-gal').fancybox({loop: true});
 	$('.fancybox').fancybox({touch: false});
+	$('[data-type="tel"]').attr('type', 'tel').attr('inputmode', 'numeric');
 	$('input[type="tel"]').inputmask('+7 999 999 99 99');
 
 	$(document).on('click','.close-btn',function(){
@@ -108,7 +109,15 @@ $(document).ready(function(){
 	footerYear();
 
 	$('.action-slider').slick({
-		dots: true
+		dots: true,
+		responsive: [
+			{
+				breakpoint: 768,
+				settings: {
+					arrows: false
+				}
+			}
+		]
 	});
 
 	$('.b-catalog-cat .slider').slick({
@@ -176,9 +185,40 @@ $(document).ready(function(){
 	$(document).on('click','.swap-list > li',function(){
 		if ( !$(this).hasClass('active') ){
 			$(this).parents('.swap-list').find('li').removeClass('active');
-			$(this).addClass('active');
+			var $selected = $(this).addClass('active');
+			var offer = $(this).data();
+			var $goodsCard = $selected.closest('[data-entity="item"]');
+			$goodsCard.find('[data-current-price]').text(offer['pricePrint']);
+			$goodsCard.find('[data-basket-btn]')
+				.data('id', offer['id'])
+				.data('name', offer['name'])
+				.data('price', offer['price']);
+			$goodsCard.find('[data-basket-input]')
+				.data('id', offer['id'])
+				.data('name', offer['name'])
+				.data('price', offer['price']);
+			$goodsCard.find('[data-current-price]').text(offer['price'] + ' ₽');
+
+			if (offer['oldPrice']) {
+				$goodsCard.find('[data-discount-price]').text(offer['oldPrice'] + ' ₽').show();
+				$goodsCard.find('[data-discount-price-diff]').text('-' + (offer['oldPrice'] - offer['price']) + ' ₽').show();
+				$goodsCard.find('[data-discount-badge]').text(
+					'-' + calcDiscountPercent(offer['price'], offer['oldPrice']) + '%'
+				).show();
+			} else {
+				$goodsCard.find('[data-discount-price]').hide();
+				$goodsCard.find('[data-discount-price-diff]').hide();
+				$goodsCard.find('[data-discount-badge]').hide();
+			}
+
 		}
 	});
+	function calcDiscountPercent(price, oldPrice) {
+		if (oldPrice) {
+			return Math.floor(100 - (price / oldPrice) * 100);
+		}
+		return 0;
+	}
 
 	$(document).on('click','.catalog-btn',function(){
 		if ( $(this).hasClass('active') ){
@@ -212,43 +252,50 @@ $(document).ready(function(){
 		}
 	});*/
 
-	$('.calc-form input').on('change',function(){
-		var s = $(this).val();
-		var v = $('.calc-form select').val();
-		var res = +s*v;
-		res = +res.toFixed(6);
-
-		if (s){
-			$('.b-consumption').find('.text').html('Количество антисептика&nbsp;(л.): <span>'+res+'</span>');
-		} else {
-			$('.b-consumption').find('.text').html('Заполните поля выше для рассчёта расхода');
-		}
-	});
-
-	$('.calc-form select').on('change',function(){
-		var s = $('.calc-form input').val();
-		var v = $(this).val();
-		var res = +s*v;
-		res = +res.toFixed(6);
-
-		if (s){
-			$('.b-consumption').find('.text').html('Количество антисептика&nbsp;(л.): <span>'+res+'</span>');
-		} else {
-			$('.b-consumption').find('.text').html('Заполните поля выше для рассчёта расхода');
-		}
-	});
+	// $('.calc-form input').on('change',function(){
+	// 	var s = $(this).val();
+	// 	var v = $('.calc-form select').val();
+	// 	var res = +s*v;
+	// 	res = +res.toFixed(6);
+	//
+	// 	if (s){
+	// 		$('.b-consumption').find('.text').html('Количество антисептика&nbsp;(л.): <span>'+res+'</span>');
+	// 	} else {
+	// 		$('.b-consumption').find('.text').html('Заполните поля выше для рассчёта расхода');
+	// 	}
+	// });
+	//
+	// $('.calc-form select').on('change',function(){
+	// 	var s = $('.calc-form input').val();
+	// 	var v = $(this).val();
+	// 	var res = +s*v;
+	// 	res = +res.toFixed(6);
+	//
+	// 	if (s){
+	// 		$('.b-consumption').find('.text').html('Количество антисептика&nbsp;(л.): <span>'+res+'</span>');
+	// 	} else {
+	// 		$('.b-consumption').find('.text').html('Заполните поля выше для рассчёта расхода');
+	// 	}
+	// });
 
 
 	/*Скрипты для попапа заказа*/
 	$(document).on('click','.order-btn',function(){
-		var vol = $(this).parents('li').find('.swap-list li.active').attr('data-vol');
-		var price = $(this).parents('li').find('.swap-list li.active').attr('data-price');
-		var name = $(this).parents('li').find('.top .name').text();
-		$('#popup-cart').find('.product').find('.name').text(name);
-		$('#popup-cart').find('.product').find('.vol span').text(vol);
-		$('#popup-cart').find('.product').find('.price span').text(price);
-		$('#popup-cart').find('.product').find('.col .text').text(1);
-		$('#popup-cart').find('.sum span').text(price);
+		var $parent = $(this).parents('.b-catalog-el,li');
+		var vol = $parent.find('.swap-list li.active').attr('data-vol');
+		var price = $parent.find('.swap-list li.active').attr('data-price');
+		var name = $parent.find('.top .name').text();
+		if (!name) {
+			name = $(this).data('name');
+		}
+		var $popupCart = $('#popup-cart');
+		$popupCart.find('.product').find('.name').text(name);
+		$popupCart.find('.product').find('.vol span').text(vol);
+		$popupCart.find('.product').find('.price span').text(price);
+		$popupCart.find('.product').find('.col .text').text(1);
+		$popupCart.find('.sum span').text(price);
+		$('#product_name').val(name + ' ' + vol);
+		$('#product_quantity').val(1);
 	});
 
 	$(document).on('click','.popup .product .col .less',function(){
@@ -260,6 +307,7 @@ $(document).ready(function(){
 			sum = sum - price;
 			$(this).parents('#popup-cart').find('.sum span').text(sum);
 			$(this).parent('.col').find('.text').text(col);
+			$('#product_quantity').val(col);
 		} else {
 			$.fancybox.close();
 		}
@@ -273,11 +321,18 @@ $(document).ready(function(){
 		sum = sum + price;
 		$(this).parents('#popup-cart').find('.sum span').text(sum);
 		$(this).parent('.col').find('.text').text(col);
+		$('#product_quantity').val(col);
 	});
 
 	$(document).on('click','.popup .product .del',function(){
 		$.fancybox.close();
 	});
 	/*Конец для попапа заказа*/
+
+	$(document).on('click','.scroll-btn',function(){
+		var el = $(this).attr('href');
+		$('body,html').animate({scrollTop:$(el).offset().top},800);
+		return false;
+	});
 
 });
