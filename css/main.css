@@ -82,6 +82,7 @@
 	display: block;
 	font-size: 18px;
 	font-weight: 700;
+	line-height: 1;
 }
 .header-phone {
 	text-align: left;
@@ -550,8 +551,11 @@
 	font-size: 24px;
 	font-weight: 600;
 }
-.b-text p {
+/*.b-text p {
 	margin-bottom: 1em;
+}*/
+.b-text a {
+	color: #3e2d8f;
 }
 
 .b-btn {
@@ -723,7 +727,7 @@
 }
 .b-action-p .card {
 	width: 100%;
-	max-width: 240px;
+	max-width: 280px;
 	margin: 30px auto 0;
 }
 .b-action-p .card .image {
@@ -742,6 +746,19 @@
 	-moz-transform: translate(-50%,-50%);
 	-ms-transform: translate(-50%,-50%);
 	transform: translate(-50%,-50%);
+}
+.b-action-p .card .image .discount {
+	font-size: 20px;
+	color: #ffffff;
+	font-weight: 900;
+	padding: 10px 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100% 100%;
+	background-image: url('../i/discount-back.svg');
+	position: absolute;
+	left: -11px;
+	top: -7px;
 }
 .b-action-p .card .name {
 	margin-top: 30px;
@@ -769,6 +786,15 @@
 	position: relative;
 	font-size: 16px;
 	color: #898989;
+}
+.b-action-p .card .flex .prices .discount-num {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 3px 5px;
+	border-radius: 3px;
+	margin-left: 15px;
+	background-color: #e8f742;
+	font-size: 16px;
 }
 .b-action-p .card .flex .prices .price-old:before {
 	content: '';
@@ -2427,6 +2453,10 @@
 	margin-top: 15px;
 	font-size: 14px;
 }
+.b-about-list + .b-text {
+	max-width: 360px;
+	margin: 50px auto 0;
+}
 
 .b-contacts {
 	display: -webkit-flex;
@@ -3219,6 +3249,9 @@
 	.b-action-p .card .image {
 		height: 300px;
 	}
+	.b-action-p .card .image .discount {
+		font-size: 16px;
+	}
 	.b-action-p .card .name {
 		margin-top: 20px;
 		font-size: 18px;
@@ -3228,6 +3261,10 @@
 	}
 	.b-action-p .card .flex .prices .price-old {
 		font-size: 12px;
+	}
+	.b-action-p .card .flex .prices .discount-num {
+		font-size: 12px;
+		margin-left: 10px;
 	}
 	.b-action-p .card .flex .prices .price {
 		font-size: 20px;
@@ -3819,6 +3856,9 @@
 	.b-about-list > li .logo,
 	.b-about-list > li .content {
 		width: calc(50% - 42px);
+	}
+	.b-about-list + .b-text {
+		margin: 30px auto 0;
 	}
 
 	.b-contacts {
