@@ -593,6 +593,9 @@
 .hidden-text.hidden {
 	display: none;
 }
+.hidden-text-btn {
+	color: #3e2d8f;
+}
 
 .b-face {
 	padding: 75px 0 25px;
@@ -1527,6 +1530,37 @@
 .b-catalog-el .descr .text {
 	margin-top: 20px;
 	font-size: 16px;
+	overflow: hidden;
+}
+.b-catalog-el .descr .text a {
+	color: #3e2d8f;
+}
+.b-catalog-el .descr .more {
+	color: #3e2d8f;
+	font-weight: 600;
+	padding-bottom: 1px;
+	border-bottom: 1px dashed #3e2d8f;
+	cursor: pointer;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.b-catalog-el .descr .more:hover {
+	border-bottom-color: transparent;
+}
+.link {
+	color: #3e2d8f;
+	padding-bottom: 1px;
+	border-bottom: 1px dashed #3e2d8f;
+	cursor: pointer;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.link:hover {
+	border-bottom-color: transparent;
 }
 .b-catalog-el .docs-list {
 	display: -webkit-flex;
